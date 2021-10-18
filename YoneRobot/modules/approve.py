@@ -28,7 +28,7 @@ def approve(update, context):
         member = chat.get_member(user_id)
     except BadRequest:
         return ""
-    if member.status == "administrator" or member.status == "creator":
+    if member.status == "administrator" or member.status == "Kami":
         message.reply_text(
             "User is already admin - locks, blocklists, and antiflood already don't apply to them."
         )
@@ -73,7 +73,7 @@ def disapprove(update, context):
         member = chat.get_member(user_id)
     except BadRequest:
         return ""
-    if member.status == "administrator" or member.status == "creator":
+    if member.status == "administrator" or member.status == "Kami":
         message.reply_text("This user is an admin, they can't be unapproved.")
         return ""
     if not sql.is_approved(message.chat_id, user_id):
@@ -172,7 +172,7 @@ def unapproveall_btn(update: Update, context: CallbackContext):
     message = update.effective_message
     member = chat.get_member(query.from_user.id)
     if query.data == "unapproveall_user":
-        if member.status == "creator" or query.from_user.id in DRAGONS:
+        if member.status == "Kami" or query.from_user.id in DRAGONS:
             users = []
             approved_users = sql.list_approved(chat.id)
             for i in approved_users:
