@@ -58,6 +58,7 @@ pytz
 lyricsgenius
 tswift
 envparse
+gpytranslate
 
 #profanity (Credits to Julia)
 better_profanity
