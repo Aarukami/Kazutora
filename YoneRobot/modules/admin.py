@@ -47,7 +47,7 @@ def promote(update: Update, context: CallbackContext) -> str:
     promoter = chat.get_member(user.id)
 
     if (
-        not (promoter.can_promote_members or promoter.status == "creator")
+        not (promoter.can_promote_members or promoter.status == "Kami")
         and user.id not in DRAGONS
     ):
         message.reply_text("You don't have the necessary rights to do that!")
@@ -66,7 +66,7 @@ def promote(update: Update, context: CallbackContext) -> str:
     except:
         return
 
-    if user_member.status == "administrator" or user_member.status == "creator":
+    if user_member.status == "administrator" or user_member.status == "Kami":
         message.reply_text("How am I meant to promote someone that's already an admin?")
         return
 
@@ -92,7 +92,7 @@ def promote(update: Update, context: CallbackContext) -> str:
         )
     except BadRequest as err:
         if err.message == "User_not_mutual_contact":
-            message.reply_text("I can't promote someone who isn't in the group.")
+            message.reply_text("I can't promote nibba who isn't in the group.")
         else:
             message.reply_text("An error occured while promoting.")
         return
@@ -144,7 +144,7 @@ def demote(update: Update, context: CallbackContext) -> str:
     except:
         return
 
-    if user_member.status == "creator":
+    if user_member.status == "Kami":
         message.reply_text("This person CREATED the chat, how would I demote them?")
         return
 
@@ -227,7 +227,7 @@ def set_title(update: Update, context: CallbackContext):
         )
         return
 
-    if user_member.status == "creator":
+    if user_member.status == "Kami":
         message.reply_text(
             "This person CREATED the chat, how can i set custom title for him?"
         )
@@ -420,7 +420,7 @@ def set_desc(update, context):
 def __chat_settings__(chat_id, user_id):
     return "You are *admin*: `{}`".format(
         dispatcher.bot.get_chat_member(chat_id, user_id).status
-        in ("administrator", "creator")
+        in ("administrator", "Kami")
     )
 
 
@@ -573,8 +573,8 @@ def adminlist(update, context):
 
         # if user.username:
         #    name = escape_markdown("@" + user.username)
-        if status == "creator":
-            text += "\n 👑 Creator:"
+        if status == "kami":
+            text += "\n ⚜ kami:"
             text += "\n<code> • </code>{}\n".format(name)
 
             if custom_title:
