@@ -49,7 +49,7 @@ def ban(update: Update, context: CallbackContext) -> str:
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("I doubt that's a user.")
+        message.reply_text("Nikal pheli fursat me.")
         return log_message
     try:
         member = chat.get_member(user_id)
@@ -155,7 +155,7 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("I doubt that's a user.")
+        message.reply_text("Nikal pheli fursat me.")
         return log_message
 
     try:
@@ -244,7 +244,7 @@ def punch(update: Update, context: CallbackContext) -> str:
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("I doubt that's a user.")
+        message.reply_text("Nikal pheli fursat me.")
         return log_message
 
     try:
@@ -320,7 +320,7 @@ def unban(update: Update, context: CallbackContext) -> str:
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("I doubt that's a user.")
+        message.reply_text("Nikal pheli fursat me.")
         return log_message
 
     try:
