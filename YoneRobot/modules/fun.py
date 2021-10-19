@@ -18,6 +18,45 @@ GIF_ID = "CgACAgQAAx0CSVUvGgAC7KpfWxMrgGyQs-GUUJgt-TSO8cOIDgACaAgAAlZD0VHT3Zynpr
 def run(update: Update, context: CallbackContext):
     update.effective_message.reply_text(random.choice(fun_strings.RUN_STRINGS))
 
+@run_async
+def kiss(update: Update, context: CallbackContext):
+    bot = context.bot
+    args = context.args
+    message = update.effective_message
+
+    reply_to = message.reply_to_message if message.reply_to_message else message
+
+    curr_user = html.escape(message.from_user.first_name)
+    user_id = extract_user(message, args)
+
+    if user_id:
+        kissed_user = bot.get_chat(user_id)
+        user1 = curr_user
+        user2 = html.escape(patted_user.first_name)
+
+    else:
+        user1 = bot.first_name
+        user2 = curr_user
+
+    kiss_type = random.choice(("Text", "Gif", "Sticker"))
+    if kiss_type == "Gif":
+        try:
+            temp = random.choice(fun_strings.KISS_GIFS)
+            reply_to.reply_animation(temp)
+        except BadRequest:
+            pat_type = "Text"
+
+    if pat_type == "Sticker":
+        try:
+            temp = random.choice(fun_strings.KISS_STICKERS)
+            reply_to.reply_sticker(temp)
+        except BadRequest:
+            pat_type = "Text"
+
+    if kiss_type == "Text":
+        temp = random.choice(fun_strings.KISS_TEMPLATES)
+        reply = temp.format(user1=user1, user2=user2)
+        reply_to.reply_text(reply, parse_mode=ParseMode.HTML)
 
 @run_async
 def sanitize(update: Update, context: CallbackContext):
@@ -339,6 +378,7 @@ __help__ = """
  ❍ /sanitize*:* always use this before /pat or any contact
  ❍ /pat*:* pats a user, or get patted
  ❍ /8ball*:* predicts using 8ball method 
+ ❍ /kiss*:* kiss a user, or get kissed
 """
 
 SANITIZE_HANDLER = DisableAbleCommandHandler("sanitize", sanitize)
@@ -360,6 +400,7 @@ dispatcher.add_handler(WEEBIFY_HANDLER)
 dispatcher.add_handler(SHOUT_HANDLER)
 dispatcher.add_handler(SANITIZE_HANDLER)
 dispatcher.add_handler(RUN_HANDLER)
+dispatcher.add_handler(KISS_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
 dispatcher.add_handler(PAT_HANDLER)
 dispatcher.add_handler(ROLL_HANDLER)
@@ -373,7 +414,8 @@ dispatcher.add_handler(TABLE_HANDLER)
 
 __mod_name__ = "Memes"
 __command_list__ = [
-    "runs",
+    "run",
+    "kiss",
     "slap",
     "roll",
     "toss",
@@ -390,6 +432,7 @@ __command_list__ = [
 ]
 __handlers__ = [
     RUN_HANDLER,
+    KISS_HANDLER,
     SLAP_HANDLER,
     PAT_HANDLER,
     ROLL_HANDLER,
