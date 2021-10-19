@@ -43,8 +43,7 @@ def kiss(update: Update, context: CallbackContext):
         try:
             temp = random.choice(fun_strings.KISS_GIFS)
             reply_to.reply_animation(temp)
-        except BadRequest:
-             pat_type = "Text"
+       
 
 @run_async
 def sanitize(update: Update, context: CallbackContext):
