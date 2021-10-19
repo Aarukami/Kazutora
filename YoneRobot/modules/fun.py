@@ -38,25 +38,13 @@ def kiss(update: Update, context: CallbackContext):
         user1 = bot.first_name
         user2 = curr_user
 
-    kiss_type = random.choice(("Text", "Gif", "Sticker"))
+    kiss_type = random.choice(( "Gif" ))
     if kiss_type == "Gif":
         try:
             temp = random.choice(fun_strings.KISS_GIFS)
             reply_to.reply_animation(temp)
         except BadRequest:
-            pat_type = "Text"
-
-    if pat_type == "Sticker":
-        try:
-            temp = random.choice(fun_strings.KISS_STICKERS)
-            reply_to.reply_sticker(temp)
-        except BadRequest:
-            pat_type = "Text"
-
-    if kiss_type == "Text":
-        temp = random.choice(fun_strings.KISS_TEMPLATES)
-        reply = temp.format(user1=user1, user2=user2)
-        reply_to.reply_text(reply, parse_mode=ParseMode.HTML)
+             pat_type = "Text"
 
 @run_async
 def sanitize(update: Update, context: CallbackContext):
