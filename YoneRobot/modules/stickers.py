@@ -119,7 +119,7 @@ def kang(update: Update, context: CallbackContext):
         elif msg.reply_to_message.document:
             file_id = msg.reply_to_message.document.file_id
         else:
-            msg.reply_text("Yea, I can't kang that.")
+            msg.reply_text("that's a msg u noob.")
 
         kang_file = context.bot.get_file(file_id)
         if not is_animated:
@@ -359,7 +359,7 @@ def kang(update: Update, context: CallbackContext):
                 )
             print(e)
     else:
-        packs = "Please reply to a sticker, or image to kang it!\nOh, by the way. here are your packs:\n"
+        packs = "Please reply to a sticker nibba, or image to kang it!\nOh, by the way. here are your packs:\n"
         if packnum > 0:
             firstpackname = "a" + str(user.id) + "_by_" + context.bot.username
             for i in range(0, packnum + 1):
